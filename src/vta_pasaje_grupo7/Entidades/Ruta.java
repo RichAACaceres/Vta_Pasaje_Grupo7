@@ -17,21 +17,24 @@ public class Ruta {
     private String origen;
     private String destino;
     private LocalTime duracionEstima;
+    private boolean estado;
 
     public Ruta() {
     }
 
-    public Ruta(int idRuta, String origen, String destino, LocalTime duracionEstima) {
+    public Ruta(int idRuta, String origen, String destino, LocalTime duracionEstima, boolean estado) {
         this.idRuta = idRuta;
         this.origen = origen;
         this.destino = destino;
         this.duracionEstima = duracionEstima;
+        this.estado = estado;
     }
 
-    public Ruta(String origen, String destino, LocalTime duracionEstima) {
+    public Ruta(String origen, String destino, LocalTime duracionEstima, boolean estado) {
         this.origen = origen;
         this.destino = destino;
         this.duracionEstima = duracionEstima;
+        this.estado = estado;
     }
 
     public int getIdRuta() {
@@ -66,10 +69,20 @@ public class Ruta {
         this.duracionEstima = duracionEstima;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Ruta{" + "idRuta=" + idRuta + ", origen=" + origen + ", destino=" + destino + ", duracionEstima=" + duracionEstima + '}';
+        return "Ruta{" + "idRuta=" + idRuta + ", origen=" + origen + ", destino=" + destino + ", duracionEstima=" + duracionEstima + ", estado=" + estado + '}';
     }
+
+    
     
     
 }
