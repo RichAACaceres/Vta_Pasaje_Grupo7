@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vta_pasaje_grupo7.Entidades;
 
 import java.time.LocalTime;
 
-/**
- *
- * @author Usuario
- */
+
 public class Ruta {
     
     private int idRuta;
@@ -72,6 +65,8 @@ public class Ruta {
     public boolean isEstado() {
         return estado;
     }
+
+   
 
     public void setEstado(boolean estado) {
         this.estado = estado;

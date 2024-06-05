@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vta_pasaje_grupo7.Entidades;
 
-/**
- *
- * @author Usuario
- */
+
 public class Pasajero {
     
     private int idPasajero;
@@ -99,7 +92,7 @@ public class Pasajero {
 
     @Override
     public String toString() {
-        return "Pasajero{" + "idPasajero=" + idPasajero + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", email=" + email + ", telefono=" + telefono + ", estado=" + estado + '}';
+        return apellido+" "+nombre+" "+dni;
     }
 
     
