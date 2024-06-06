@@ -137,18 +137,14 @@ String sql="DELETE FROM `pasaje` WHERE idPasaje = ?";
             System.out.println(ex.getMessage());
         }
 }
-public boolean asientosDisponibles(){ 
+public boolean asientosDisponibles(Colectivo c,Pasaje p ){ 
     boolean disponibilidad=false;
-    Colectivo colectivo=new Colectivo();
-    Pasaje pasaje=new Pasaje();
-int capacidad=colectivo.getCapacidad();
+   
+int capacidad=c.getCapacidad();
 
-        if(pasaje.getColectivo().getIdColectivo()==colectivo.getIdColectivo() && colectivo.getCapacidad()>0){
-        
-        
-            if(capacidad < pasaje.getAsiento()){
-                capacidad--;
-                
+        if(p.getColectivo().getIdColectivo()==c.getIdColectivo() && c.getCapacidad()>0){
+            if(capacidad < p.getAsiento()){
+                capacidad--;  
             }
         }
         System.out.println("Capacidad: "+capacidad);

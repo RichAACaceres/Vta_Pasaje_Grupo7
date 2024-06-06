@@ -136,7 +136,7 @@ PasajeData pasajeData=new PasajeData();
 //  }
         
 //Anular venta
-pasajeData.anularVenta(5);
+//pasajeData.anularVenta(5);
         
     }
     
