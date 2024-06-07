@@ -45,20 +45,20 @@ public class GestionRutas extends javax.swing.JInternalFrame {
         jsHoras = new javax.swing.JSpinner();
         jbGuardar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jsMinutos = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbNuevo = new javax.swing.JButton();
+        jBuscar = new javax.swing.JButton();
 
         setTitle("Gestión de rutas");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Gestionar rutas");
+        jLabel1.setText("Agregar y eliminar rutas");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Origen: ");
@@ -83,11 +83,16 @@ public class GestionRutas extends javax.swing.JInternalFrame {
 
         jbEliminar.setText("Eliminar");
         jbEliminar.setEnabled(false);
-
-        jButton4.setText("Salir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbEliminarActionPerformed(evt);
+            }
+        });
+
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
             }
         });
 
@@ -99,17 +104,17 @@ public class GestionRutas extends javax.swing.JInternalFrame {
 
         jsMinutos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 60, 1));
 
-        jButton1.setText("Nuevo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbNuevoActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Buscar ruta");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBuscar.setText("Buscar ruta");
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBuscarActionPerformed(evt);
             }
         });
 
@@ -123,13 +128,13 @@ public class GestionRutas extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jButton1)
+                .addComponent(jbNuevo)
                 .addGap(32, 32, 32)
                 .addComponent(jbGuardar)
                 .addGap(37, 37, 37)
                 .addComponent(jbEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(jbSalir)
                 .addGap(41, 41, 41))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
@@ -157,12 +162,12 @@ public class GestionRutas extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addComponent(jButton3)))
+                        .addComponent(jBuscar)))
                 .addGap(109, 109, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(163, 163, 163))
+                .addGap(179, 179, 179))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,8 +182,8 @@ public class GestionRutas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                    .addComponent(jBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,8 +203,8 @@ public class GestionRutas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbEliminar)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1))
+                    .addComponent(jbSalir)
+                    .addComponent(jbNuevo))
                 .addGap(32, 32, 32))
         );
 
@@ -219,6 +224,7 @@ public class GestionRutas extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
        try{
+           int aux=0;
         String origen=jtOrigen.getText();
        String destino=jtDestino.getText();
        if(origen.equals("") || destino.equals("")){
@@ -232,53 +238,86 @@ public class GestionRutas extends javax.swing.JInternalFrame {
        int minutos=(int) jsMinutos.getValue();
       LocalTime duracion= LocalTime.of(horas,minutos);
        boolean estado=jrEstado.isSelected();
-       Ruta ruta=new Ruta(6,origen,destino,duracion,estado);
+       Ruta ruta=new Ruta(origen,destino,duracion,estado);
        RutaData rd=new RutaData();
-       for(Ruta r :rd.rutasPorDestino(origen, destino)){
-           if(r.getOrigen()!=origen && r.getDestino()!=destino){
-       rd.guardarRuta(ruta);
-           }else{
-           JOptionPane.showMessageDialog(this, "Ya existe una ruta con este destino");
+          
+       for(Ruta r :rd.rutasDisponibles()){
+           
+           if(r.getOrigen().toLowerCase().equals(ruta.getOrigen().toLowerCase()) && r.getDestino().toLowerCase().equals(ruta.getDestino().toLowerCase()) ){
+            aux=1;
+            }else {
+           aux=0;
            }
+       }
+       if(aux==1){
+       JOptionPane.showMessageDialog(this, "Ya existe esta ruta");
+       }else if(aux==0){
+       rd.guardarRuta(ruta);
        }
        }catch(Exception e){
            JOptionPane.showMessageDialog(this, "Asegurese que los datos ingresados sean correctos");
        }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         jtDestino.setText("");
         jtOrigen.setText("");
         jrEstado.setSelected(false);
         jsHoras.setValue(0);
         jsMinutos.setValue(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        jbEliminar.setEnabled(false);
+    }//GEN-LAST:event_jbNuevoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String origen=jtOrigen.getText();
-        String destino=jtDestino.getText();
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+        int aux=0; //Auxiliar para saber si no encontró la ruta
+        String origen=jtOrigen.getText().toLowerCase();
+        String destino=jtDestino.getText().toLowerCase();
         RutaData rd= new RutaData();
+        if(origen.equals("")){
+        JOptionPane.showMessageDialog(this, "Agregue el origen de la ruta");
+        return;
+        }else if(destino.equals("")){
+        JOptionPane.showMessageDialog(this, "Agregue el destino de la ruta");
+        return;
+        }
         for(Ruta r:rd.rutasPorDestino(origen, destino)){
         if(r.getDestino().toLowerCase().equals(destino) && r.getOrigen().toLowerCase().equals(origen)){
         jsHoras.setValue(r.getDuracionEstima().getHour());
         jsMinutos.setValue(r.getDuracionEstima().getMinute());
         jrEstado.setSelected(r.isEstado());
         jbEliminar.setEnabled(true);
-                
+                aux=1; //Si encuentra ruta auxiliar vale 1
         }
         }
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+        if(aux==0){
+        JOptionPane.showMessageDialog(this, "Esta ruta no existe aún");
+        //Limpiar campos si no encuentra ruta
+        jtDestino.setText("");
+        jtOrigen.setText("");
+        jtOrigen.requestFocus(); //Darle el foco al origen
+        }
+    }//GEN-LAST:event_jBuscarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        String origen=jtOrigen.getText().toLowerCase();
+                String destino=jtDestino.getText().toLowerCase();
+        RutaData rd=new RutaData();
+        for(Ruta rutas:rd.rutasDisponibles()){
+        if(rutas.getOrigen().toLowerCase().equals(origen) && rutas.getDestino().toLowerCase().equals(destino) ){
+         rd.eliminarRuta(rutas.getIdRuta());
+         jbEliminar.setEnabled(false);
+        }
+        }
+       
+    }//GEN-LAST:event_jbEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -290,6 +329,8 @@ public class GestionRutas extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbNuevo;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JRadioButton jrEstado;
     private javax.swing.JSpinner jsHoras;
     private javax.swing.JSpinner jsMinutos;

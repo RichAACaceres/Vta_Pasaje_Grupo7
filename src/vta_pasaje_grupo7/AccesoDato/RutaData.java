@@ -95,7 +95,9 @@ public class RutaData {
    String sql="UPDATE ruta SET estado = 0 WHERE idRuta = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, idRuta);
             int verificar=ps.executeUpdate();
+            
             if(verificar > 0){
             JOptionPane.showMessageDialog(null, "Ruta eliminada");
             }
