@@ -89,6 +89,11 @@ public class Menú extends javax.swing.JFrame {
         jMenu3.setText("Pasajeros");
 
         jMenuItem3.setText("Gestionar pasajeros");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
@@ -145,6 +150,15 @@ public class Menú extends javax.swing.JFrame {
         gr.setVisible(true);
         escritorio.moveToFront(gr);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       escritorio.removeAll();
+       escritorio.repaint();
+       GestionPasajeros gp=new GestionPasajeros();
+       escritorio.add(gp);
+       gp.setVisible(true);
+       escritorio.moveToFront(gp);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

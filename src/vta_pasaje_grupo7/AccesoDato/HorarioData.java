@@ -33,6 +33,37 @@ public class HorarioData {
         }
     
     }
+    public ArrayList<Horario>horariosDisponibles(){
+   RutaData rd=new RutaData();
+   
+   ArrayList<Ruta>rutas=rd.rutasDisponibles();
+        ArrayList<Horario>horarios=new ArrayList();
+        String sql="SELECT * FROM horario WHERE estado > 0";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+            Horario horario=new Horario();
+            horario.setIdHorario(rs.getInt("idHorario"));
+            for(Ruta r:rutas){
+            if(r.getIdRuta()==rs.getInt("idRuta")){
+            horario.setRuta(r);
+            }
+            }
+            horario.setHoraSalida(rs.getTime("horasalida").toLocalTime());
+            horario.setHoraSalida(rs.getTime("horallegada").toLocalTime());
+            horario.setEstado(true);
+            horarios.add(horario);
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar horarios disponibles");
+            System.out.println(ex.getMessage());
+        }
+    
+    return horarios;
+    
+    }
 public ArrayList<Horario> horarioDisponiblesPorRuta(Ruta r){
     ArrayList<Horario>horarios=new ArrayList();
     
@@ -60,37 +91,37 @@ public ArrayList<Horario> horarioDisponiblesPorRuta(Ruta r){
     
 
 }
-public ArrayList<Horario>horariosPorHoraDeSalida(Horario h,ArrayList<Ruta> rutas){
-ArrayList<Horario>horarios=new ArrayList();
-
-String sql="SELECT * FROM ruta,horario WHERE ruta.idRuta=horario.idRuta AND horario.horasalida = ?";
-        try {
-            PreparedStatement ps=con.prepareStatement(sql);
-             
-            ps.setTime(1, Time.valueOf(h.getHoraSalida()));
-           
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-            Horario horario=new Horario();
-       for(Ruta r:rutas){
-       if(rs.getInt("idRuta")==r.getIdRuta()){
-       horario.setEstado(rs.getBoolean("estado"));
-           horario.setHoraLlegada(rs.getTime("horallegada").toLocalTime());
-           horario.setHoraSalida(rs.getTime("horasalida").toLocalTime());
-           horario.setIdHorario(rs.getInt("idHorario"));
-         horario.setRuta(r);
-          horarios.add(horario);
-       }
-       }
-           
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al listar horarios por salida");
-            System.out.println(ex.getMessage());
-        }
-
-return horarios;
-}
+//public ArrayList<Horario>horariosPorHorarioSalida(Horario h,ArrayList<Ruta> rutas){
+//ArrayList<Horario>horarios=new ArrayList();
+//
+//String sql="SELECT * FROM ruta,horario WHERE ruta.idRuta=horario.idRuta AND horario.horasalida = ?";
+//        try {
+//            PreparedStatement ps=con.prepareStatement(sql);
+//             
+//            ps.setTime(1, Time.valueOf(h.getHoraSalida()));
+//           
+//            ResultSet rs=ps.executeQuery();
+//            while(rs.next()){
+//            Horario horario=new Horario();
+//       for(Ruta r:rutas){
+//       if(rs.getInt("idRuta")==r.getIdRuta()){
+//       horario.setEstado(rs.getBoolean("estado"));
+//           horario.setHoraLlegada(rs.getTime("horallegada").toLocalTime());
+//           horario.setHoraSalida(rs.getTime("horasalida").toLocalTime());
+//           horario.setIdHorario(rs.getInt("idHorario"));
+//         horario.setRuta(r);
+//          horarios.add(horario);
+//       }
+//       }
+//           
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al listar horarios por salida");
+//            System.out.println(ex.getMessage());
+//        }
+//
+//return horarios;
+//}
 }
 
 
