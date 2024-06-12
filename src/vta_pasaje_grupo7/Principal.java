@@ -14,7 +14,7 @@ public class Principal {
     public static void main(String[] args) {
        Ruta ruta=new Ruta(1,"San Luis","Villa Mercedes", LocalTime.of(1, 30),true);
        Ruta ruta2=new Ruta(2,"San Luis","Buenos Aires", LocalTime.of(16, 30),true);
-        Ruta ruta3=new Ruta("San Luis","Villa de la quebrada", LocalTime.of(0, 30),true);
+        Ruta ruta3=new Ruta(3,"San Luis","Villa de la quebrada", LocalTime.of(0, 30),true);
        RutaData rd=new RutaData();
      
        //Guardar ruta
@@ -85,8 +85,9 @@ PasajeroData pd=new PasajeroData();
 //Cargar colectivo
 Colectivo colectivo=new Colectivo(1,"COLE1","Mercedes","1114",24,true);
 Colectivo colectivo2=new Colectivo(2,"COLE2","Volvo","64",64,true);
+Colectivo colectivo3=new Colectivo(3,"COLE3","Prueba","64",1,true);
 ColectivoData cd=new ColectivoData();
-//cd.cargarColectivo(colectivo);
+//cd.cargarColectivo(colectivo3);
 //cd.cargarColectivo(colectivo2);
 
 //Listar colectivos disponibles
@@ -99,8 +100,13 @@ ColectivoData cd=new ColectivoData();
 
 Pasaje pasaje=new Pasaje(pasajero,colectivo,ruta,LocalDate.of(2024,10,1),LocalTime.of(14,00),25,20.500);
 Pasaje pasaje2=new Pasaje(pasajero2,colectivo2,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+Pasaje pasaje3=new Pasaje(pasajero2,colectivo3,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+Pasaje pasaje4=new Pasaje(pasajero,colectivo3,ruta3,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+Pasaje pasaje5=new Pasaje(pasajero2,colectivo3,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+Pasaje pasaje6=new Pasaje(pasajero,colectivo3,ruta,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
 PasajeData pasajeData=new PasajeData();
-   //pasajeData.venderPasaje(pasaje2);
+        
+   //pasajeData.venderPasaje(pasaje5);
    
    //Historial pasajes vendidos
        //ArrayList<Pasaje> pasajes=new ArrayList();

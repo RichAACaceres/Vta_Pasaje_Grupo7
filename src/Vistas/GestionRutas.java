@@ -238,6 +238,7 @@ public class GestionRutas extends javax.swing.JInternalFrame {
        int minutos=(int) jsMinutos.getValue();
       LocalTime duracion= LocalTime.of(horas,minutos);
        boolean estado=jrEstado.isSelected();
+       
        Ruta ruta=new Ruta(origen,destino,duracion,estado);
        RutaData rd=new RutaData();
           

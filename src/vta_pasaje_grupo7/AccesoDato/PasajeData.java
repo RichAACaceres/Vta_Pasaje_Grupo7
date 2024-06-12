@@ -2,6 +2,7 @@
 package vta_pasaje_grupo7.AccesoDato;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,8 +11,37 @@ import vta_pasaje_grupo7.Entidades.*;
 
 
 public class PasajeData {
+    
     Connection con=Conexion.getConexion();
     
+    public boolean asientosDisponibles(Colectivo c,Pasaje p){ 
+    boolean disponibilidad=false;
+   
+    int capacidad=c.getCapacidad();
+
+
+    System.out.println("Capacidad original: "+capacidad);
+        if( capacidad >= 0){
+            
+                 capacidad--;
+            
+        }
+        
+        c.setCapacidad(capacidad);
+        
+        System.out.println("Capacidad luego de la venta: "+c.getCapacidad());
+        ColectivoData cd= new ColectivoData();
+        cd.ActualizarCapacidad(capacidad,c.getIdColectivo());
+        
+        if(capacidad>=0){
+        disponibilidad=true;
+        }else{
+        disponibilidad=false;
+        JOptionPane.showMessageDialog(null, "No queda más capacidad en este colectivo");
+        }
+        return disponibilidad;
+
+}
     public void venderPasaje(Pasaje p){
     String sql="INSERT INTO `pasaje`( `idPasajero`, `idColectivo`, `idRuta`, `fechaviaje`, `horaviaje`, `asiento`, `precio`) "
             + "VALUES (?,?,?,?,?,?,?)";
@@ -24,21 +54,45 @@ public class PasajeData {
             ps.setTime(5, Time.valueOf(p.getHoraViaje()));
             ps.setInt(6, p.getAsiento());
             ps.setDouble(7, p.getPrecio());
-            ps.executeUpdate();
+               ColectivoData cd=new ColectivoData();
+                
+               for(Colectivo c:cd.listarColectivos()){
+                   
+               if(c.getIdColectivo()==p.getColectivo().getIdColectivo()){
+                   System.out.println("Capacidad de la base de datos: "+c.getCapacidad());
+                   
+                   System.out.println("--------------------------------------------------");
+                  
+                   if(asientosDisponibles(c, p)==true){
+                    
+                       System.out.println("Capacidad luego de vender: "+c.getCapacidad());
+                     ps.executeUpdate();
+                   }
+               }
+               }
+          
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
+             
             p.setIdPasaje(rs.getInt("idPasaje"));
             JOptionPane.showMessageDialog(null, "Pasaje vendido");
             
             }
+            System.out.println("No entró");
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al vender pasaje");
             System.out.println(ex.getMessage());
         }
     }
-public ArrayList<Pasaje>pasajesVendidos(ArrayList<Ruta> rutas,ArrayList<Pasajero> pasajeros, ArrayList<Colectivo> colectivos){
-ArrayList<Pasaje>pasajes=new ArrayList();
+public ArrayList<Pasaje>pasajesVendidos(){
+    RutaData rd=new RutaData();
+    PasajeroData pd=new PasajeroData();
+    ColectivoData cd=new ColectivoData();
+ArrayList<Ruta> rutas=rd.rutasDisponibles();
+ArrayList<Pasajero> pasajeros=pd.listaDePasajeros();
+ArrayList<Colectivo> colectivos=cd.listarColectivos();
+    ArrayList<Pasaje>pasajes=new ArrayList();
 String sql="SELECT * FROM pasaje";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -78,13 +132,20 @@ pasajes.add(pasaje);
 
 return pasajes;
 }
-public ArrayList<Pasaje>pasajesVendidosPorRuta(String origen,String destino,ArrayList<Ruta> rutas,ArrayList<Pasajero> pasajeros, ArrayList<Colectivo> colectivos){
-ArrayList<Pasaje>pasajes=new ArrayList();
-String sql="SELECT * FROM pasaje,ruta WHERE pasaje.idRuta=ruta.idRuta AND ruta.origen = ? AND ruta.destino = ?";
+public ArrayList<Pasaje>pasajesVendidosPorRuta(int id ){
+   RutaData rd=new RutaData();
+   PasajeData pd=new PasajeData();
+   PasajeroData pasajerod=new PasajeroData();
+   ColectivoData cd=new ColectivoData();
+ArrayList<Pasaje>pasajes=pd.pasajesVendidos();
+ArrayList<Ruta> rutas=rd.rutasDisponibles();
+ArrayList<Pasajero> pasajeros=pasajerod.listaDePasajeros();
+ArrayList<Colectivo> colectivos=cd.listarColectivos();
+String sql="SELECT * FROM pasaje,ruta WHERE pasaje.idRuta=ruta.idRuta AND ruta.idRuta = ? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setString(1, origen);
-            ps.setString(2, destino);
+            ps.setInt(1, id);
+           
           
            ResultSet rs= ps.executeQuery();
 while(rs.next()){
@@ -137,21 +198,35 @@ String sql="DELETE FROM `pasaje` WHERE idPasaje = ?";
             System.out.println(ex.getMessage());
         }
 }
-public boolean asientosDisponibles(Colectivo c,Pasaje p ){ 
-    boolean disponibilidad=false;
-   
-int capacidad=c.getCapacidad();
+public ArrayList<Colectivo> obtenerColectivoPorRuta(int id){
+String sql="SELECT * FROM colectivo,ruta,pasaje WHERE pasaje.idColectivo=colectivo.idColectivo AND ruta.idRuta = pasaje.idRuta AND ruta.idRuta = ?";
 
-        if(p.getColectivo().getIdColectivo()==c.getIdColectivo() && c.getCapacidad()>0){
-            if(capacidad < p.getAsiento()){
-                capacidad--;  
-            }
+ColectivoData cd=new ColectivoData();
+PasajeData pd=new PasajeData();
+ArrayList<Colectivo>colectivos=new ArrayList();
+ArrayList<Colectivo>coles=cd.listarColectivos();
+ArrayList<Pasaje>pasajes=pd.pasajesVendidos();
+try {
+            PreparedStatement ps=con.prepareStatement(sql);
+          ps.setInt(1, id);
+           ResultSet rs= ps.executeQuery();
+           if(rs.next()){
+               Colectivo colectivo=new Colectivo(); 
+           for(Colectivo c:coles){
+               for(Pasaje p: pasajes){
+           if(c.getIdColectivo()==p.getColectivo().getIdColectivo() && p.getRuta().getIdRuta()==id){
+               colectivo=c;
+            colectivos.add(colectivo);
+           }
+               }
+              
+           }
+           
+           }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener colectivo");
+            System.out.println(ex.getMessage());
         }
-        System.out.println("Capacidad: "+capacidad);
-        if(capacidad>0){
-        disponibilidad=true;
-        }
-        return disponibilidad;
-
+        return colectivos;
 }
 }

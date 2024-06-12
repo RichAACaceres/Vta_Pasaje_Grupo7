@@ -30,10 +30,13 @@ public class PasajeroData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al cargar pasajero");
-            System.out.println(ex.getMessage());
+           
+                     if(ex.getErrorCode()==1062){
+                     JOptionPane.showMessageDialog(null, "Ya existe un pasajero cargado con este dni");
+                     }
         }
     }
+    
     public ArrayList<Pasajero>listaDePasajeros(){
     ArrayList<Pasajero>pasajeros=new ArrayList();
     String sql="SELECT * FROM pasajero WHERE estado > 0";
@@ -59,6 +62,7 @@ public class PasajeroData {
         }
     return pasajeros;
     }
+    
     public Pasajero PasajeroPorDni(int dni){
     Pasajero pasajero=new Pasajero();
         String sql="SELECT * FROM `pasajero` WHERE dni = ? AND estado > 0";
@@ -85,5 +89,20 @@ public class PasajeroData {
         
         
 }
+    public void eliminarPasajero(int dni){
+    String sql="UPDATE pasajero SET esatdo = 0 WHERE dni = ? ";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, dni);
+           ResultSet rs= ps.executeQuery();
+           if(rs.next()){
+           JOptionPane.showMessageDialog(null,"Pasajero eliminado");
+           }
+           ps.close();
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error al eliminar pasajero");
+            System.out.println(ex.getMessage());
+        }
+    }
 }
 

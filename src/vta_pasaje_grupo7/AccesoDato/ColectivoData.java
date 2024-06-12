@@ -61,4 +61,17 @@ return colectivos;
 
 
 }
+public void ActualizarCapacidad(int capacidad,int id){
+String sql="UPDATE colectivo SET capacidad = ? WHERE colectivo.idColectivo = ?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, capacidad);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar capacidad");
+            System.out.println(ex.getMessage());
+        }
+
+}
 }
