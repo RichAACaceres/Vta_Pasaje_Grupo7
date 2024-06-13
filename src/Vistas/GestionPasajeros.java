@@ -254,6 +254,8 @@ DefaultTableModel modelo=new DefaultTableModel();
       jbEliminar.setEnabled(false);
       }
       }
+      borrarFilasHistorial();
+      rellenarTabla();
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbNUevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNUevoActionPerformed
@@ -302,8 +304,15 @@ DefaultTableModel modelo=new DefaultTableModel();
         JOptionPane.showMessageDialog(this, "Verifique que dni y telefono sean numéricos");
             System.out.println(e.getMessage());
         }
+        borrarFilasHistorial();
+        rellenarTabla();
     }//GEN-LAST:event_jbGuardarActionPerformed
 
+    public void borrarFilasHistorial(){
+while(modelo.getRowCount()>0){
+modelo.removeRow(0);
+}
+}
 public void armarCabecerea(){
 modelo.addColumn("IdPasajero");
 modelo.addColumn("Dni");
@@ -328,6 +337,11 @@ modelo.addRow(new Object[]{
 
 });
 }
+//public void borrarFilasHistorial(){
+//while(modelo2.getRowCount()>0){
+//modelo2.removeRow(0);
+//}
+//}
 
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
