@@ -37,12 +37,10 @@ DefaultTableModel modelo=new DefaultTableModel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jtApellido = new javax.swing.JTextField();
         jtNombre = new javax.swing.JTextField();
         jtEmail = new javax.swing.JTextField();
         jtTelefono = new javax.swing.JTextField();
-        jtEstado = new javax.swing.JRadioButton();
         jbGuardar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -79,9 +77,6 @@ DefaultTableModel modelo=new DefaultTableModel();
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Telefono:");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Estado:");
 
         jbGuardar.setText("Guardar");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,25 +115,23 @@ DefaultTableModel modelo=new DefaultTableModel();
                             .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel2))
-                            .addComponent(jLabel6)
-                            .addGroup(fondoPasajeroLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel7)))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel6))
                         .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPasajeroLayout.createSequentialGroup()
-                                .addComponent(jtEstado)
-                                .addGap(36, 36, 36)
+                                .addGap(75, 75, 75)
                                 .addComponent(jbNUevo)
                                 .addGap(39, 39, 39)
                                 .addComponent(jbGuardar)
                                 .addGap(27, 27, 27)
                                 .addComponent(jbEliminar)
                                 .addGap(103, 103, 103))
-                            .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(fondoPasajeroLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(fondoPasajeroLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -166,18 +159,11 @@ DefaultTableModel modelo=new DefaultTableModel();
                 .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fondoPasajeroLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbGuardar)
-                            .addComponent(jbEliminar)
-                            .addComponent(jbNUevo)))
-                    .addGroup(fondoPasajeroLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtEstado)
-                            .addComponent(jLabel7))))
+                .addGap(41, 41, 41)
+                .addGroup(fondoPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbGuardar)
+                    .addComponent(jbEliminar)
+                    .addComponent(jbNUevo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -245,7 +231,7 @@ DefaultTableModel modelo=new DefaultTableModel();
      jtApellido.setText(p.getApellido());
      jtEmail.setText(p.getEmail());
      jtTelefono.setText(String.valueOf(p.getTelefono()));
-     jtEstado.setSelected(p.isEstado());
+     
      jbEliminar.setEnabled(true);
      aux=1;
      }
@@ -265,6 +251,7 @@ DefaultTableModel modelo=new DefaultTableModel();
       for(Pasajero p:pd.listaDePasajeros()){
       if(dni==p.getDni()){
       pd.eliminarPasajero(dni);
+      jbEliminar.setEnabled(false);
       }
       }
     }//GEN-LAST:event_jbEliminarActionPerformed
@@ -275,7 +262,7 @@ DefaultTableModel modelo=new DefaultTableModel();
          jtApellido.setText("");
           jtEmail.setText("");
            jtTelefono.setText("");
-            jtEstado.setSelected(false);
+           
             jbEliminar.setEnabled(false);
     }//GEN-LAST:event_jbNUevoActionPerformed
 
@@ -285,6 +272,21 @@ DefaultTableModel modelo=new DefaultTableModel();
         String nombre=jtNombre.getText();
         String apellido=jtApellido.getText();
         String email=jtEmail.getText();
+        if(nombre.length()<3 || apellido.length()<3 ||!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
+        if(nombre.length()<3){
+        JOptionPane.showMessageDialog(this, "Ingrese un nombre válido");
+            return;  
+        }
+        if(apellido.length()<3){
+         JOptionPane.showMessageDialog(this, "Ingrese un apellido válido");
+            return; 
+        }
+        if(!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
+          JOptionPane.showMessageDialog(this, "Ingrese un email válido");
+            return;
+        }
+        }
+        
         float telefono=Float.parseFloat(jtTelefono.getText());
         boolean estado=true;
        
@@ -292,7 +294,7 @@ DefaultTableModel modelo=new DefaultTableModel();
         if(dni>0 && !nombre.equals("")&&!apellido.equals("")&&!email.equals("")&&telefono>0){
          Pasajero pasajero=new Pasajero(nombre,apellido,dni,email, (int) telefono,estado);
         pd.agregarPasajeros(pasajero);
-        jtEstado.setSelected(true);
+        
         }else{
         JOptionPane.showMessageDialog(this, "Complete todos los campos para guarda un pasajero");
         }
@@ -336,7 +338,6 @@ modelo.addRow(new Object[]{
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscar;
@@ -346,7 +347,6 @@ modelo.addRow(new Object[]{
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtDNI;
     private javax.swing.JTextField jtEmail;
-    private javax.swing.JRadioButton jtEstado;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTable jtPasajeros;
     private javax.swing.JTextField jtTelefono;

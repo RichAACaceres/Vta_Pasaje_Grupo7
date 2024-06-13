@@ -10,23 +10,26 @@ public class Ruta {
     private String origen;
     private String destino;
     private LocalTime duracionEstima;
+    private Colectivo colectivo;
     private boolean estado;
 
     public Ruta() {
     }
 
-    public Ruta(int idRuta, String origen, String destino, LocalTime duracionEstima, boolean estado) {
+    public Ruta(int idRuta, String origen, String destino, LocalTime duracionEstima, Colectivo colectivo, boolean estado) {
         this.idRuta = idRuta;
         this.origen = origen;
         this.destino = destino;
         this.duracionEstima = duracionEstima;
+        this.colectivo = colectivo;
         this.estado = estado;
     }
 
-    public Ruta(String origen, String destino, LocalTime duracionEstima, boolean estado) {
+    public Ruta(String origen, String destino, LocalTime duracionEstima, Colectivo colectivo, boolean estado) {
         this.origen = origen;
         this.destino = destino;
         this.duracionEstima = duracionEstima;
+        this.colectivo = colectivo;
         this.estado = estado;
     }
 
@@ -62,15 +65,23 @@ public class Ruta {
         this.duracionEstima = duracionEstima;
     }
 
+    public Colectivo getColectivo() {
+        return colectivo;
+    }
+
+    public void setColectivo(Colectivo colectivo) {
+        this.colectivo = colectivo;
+    }
+
     public boolean isEstado() {
         return estado;
     }
 
-   
-
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    
 
     @Override
     public String toString() {

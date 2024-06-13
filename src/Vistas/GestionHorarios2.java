@@ -6,6 +6,7 @@
 package Vistas;
 
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
 import vta_pasaje_grupo7.AccesoDato.*;
 import vta_pasaje_grupo7.Entidades.*;
 
@@ -163,8 +164,16 @@ public class GestionHorarios2 extends javax.swing.JInternalFrame {
         Ruta ruta=RutaSeleccionada.getRutaSeleccionada();
         int horaSalida=(int) jsHoraSalida.getValue();
         int minutosSalida=(int) jsMinutoSalida.getValue();
+        if(horaSalida==0 && minutosSalida==0){
+            JOptionPane.showMessageDialog(this, "Agregue La hora de salida");
+            return;
+        }
                 int horallegada=(int) jsHorallegada.getValue();
                 int minutosllegada=(int) jsMinutollegada.getValue();
+                if(horallegada==0 && minutosllegada==0){
+                 JOptionPane.showMessageDialog(this, "Agregue La hora de llegada");
+            return;
+                }
         Horario horario=new Horario(ruta,LocalTime.of(horaSalida,minutosSalida),LocalTime.of(horallegada, minutosllegada),true);
         hd.agregarHorario(horario);
         

@@ -74,4 +74,36 @@ String sql="UPDATE colectivo SET capacidad = ? WHERE colectivo.idColectivo = ?";
         }
 
 }
+public ArrayList<Colectivo>colectivosPorRuta(Ruta ruta){
+ArrayList<Colectivo>colectivos=new ArrayList();
+ColectivoData cd=new ColectivoData();
+ArrayList<Colectivo>colectivosCargados=cd.listarColectivos();
+    
+String sql="SELECT * FROM colectivo,ruta WHERE colectivo.idColectivo = Ruta.idColectivo AND ruta.idRuta = ?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, ruta.getIdRuta());
+           ResultSet rs= ps.executeQuery();
+           while(rs.next()){
+           Colectivo colectivo=new Colectivo();
+           for(Colectivo c:colectivosCargados){
+               
+           if(c.getIdColectivo()==ruta.getColectivo().getIdColectivo()){
+               colectivo.setCapacidad(c.getCapacidad());
+           colectivo.setIdColectivo(c.getIdColectivo());
+           colectivo.setEstado(true);
+           colectivo.setMarca(c.getMarca());
+           colectivo.setMatricula(c.getMatricula());
+           colectivo.setModelo(c.getModelo());
+           colectivos.add(colectivo);
+           }
+           }
+           
+           }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error al listar colectivos por ruta");
+            System.out.println(ex.getMessage());
+        }
+        return colectivos;
+}
 }

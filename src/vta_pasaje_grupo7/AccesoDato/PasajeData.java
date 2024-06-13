@@ -78,7 +78,7 @@ public class PasajeData {
             JOptionPane.showMessageDialog(null, "Pasaje vendido");
             
             }
-            System.out.println("No entró");
+          
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al vender pasaje");
@@ -137,7 +137,7 @@ public ArrayList<Pasaje>pasajesVendidosPorRuta(int id ){
    PasajeData pd=new PasajeData();
    PasajeroData pasajerod=new PasajeroData();
    ColectivoData cd=new ColectivoData();
-ArrayList<Pasaje>pasajes=pd.pasajesVendidos();
+ArrayList<Pasaje>pasajes=new ArrayList();
 ArrayList<Ruta> rutas=rd.rutasDisponibles();
 ArrayList<Pasajero> pasajeros=pasajerod.listaDePasajeros();
 ArrayList<Colectivo> colectivos=cd.listarColectivos();

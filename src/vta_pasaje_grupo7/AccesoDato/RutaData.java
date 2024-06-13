@@ -12,13 +12,14 @@ import vta_pasaje_grupo7.Entidades.*;
 public class RutaData {
     Connection con=Conexion.getConexion();
     public void guardarRuta(Ruta r){
-    String sql="INSERT INTO ruta ( `origen`, `destino`, `duracionEstima`, `estado`) VALUES (?,?,?,?)";
+    String sql="INSERT INTO ruta ( `origen`, `destino`, `duracionEstima`, `estado`,idColectivo) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, r.getOrigen());
             ps.setString(2, r.getDestino());
             ps.setTime(3, Time.valueOf(r.getDuracionEstima()));
             ps.setBoolean(4, r.isEstado());
+            ps.setInt(5, r.getColectivo().getIdColectivo());
            ps.executeUpdate();
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
@@ -39,7 +40,9 @@ public class RutaData {
     }
    public ArrayList<Ruta> rutasDisponibles(){
    ArrayList<Ruta>rutas= new ArrayList();
+   ColectivoData cd=new ColectivoData();
    
+   ArrayList<Colectivo>colectivos=cd.listarColectivos();
    String sql="SELECT * FROM `ruta` WHERE estado > 0";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -51,6 +54,12 @@ public class RutaData {
             ruta.setIdRuta(rs.getInt("idRuta"));
             ruta.setEstado(rs.getBoolean("estado"));
             ruta.setOrigen(rs.getString("origen"));
+            for(Colectivo c:colectivos){
+                if(c.getIdColectivo()==rs.getInt("idColectivo")){
+             ruta.setColectivo(c);
+                }
+            }
+           
             rutas.add(ruta);
             }
             ps.close();

@@ -90,12 +90,12 @@ public class PasajeroData {
         
 }
     public void eliminarPasajero(int dni){
-    String sql="UPDATE pasajero SET esatdo = 0 WHERE dni = ? ";
+    String sql="UPDATE pasajero SET estado = 0 WHERE dni = ? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, dni);
-           ResultSet rs= ps.executeQuery();
-           if(rs.next()){
+           int verificar=ps.executeUpdate();
+           if(verificar>0){
            JOptionPane.showMessageDialog(null,"Pasajero eliminado");
            }
            ps.close();

@@ -41,7 +41,7 @@ public class GestionHorarios extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setTitle("Gestió de horarios");
+        setTitle("Gestión de horarios");
         setToolTipText("");
 
         fondoHorarios.setBackground(new java.awt.Color(204, 204, 204));
@@ -60,7 +60,6 @@ public class GestionHorarios extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtRutas.setEnabled(false);
         jtRutas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtRutasMouseClicked(evt);
@@ -178,6 +177,7 @@ try{
        GestionHorarios2 gh=new GestionHorarios2();
      fondoHorarios.add(gh);
      gh.setVisible(true);
+     gh.moveToFront();
    
    
        }
@@ -222,7 +222,8 @@ if(fila!=-1){
     String origen=(String) modelo.getValueAt(fila, 1);
     String destino=(String) modelo.getValueAt(fila, 2);
     LocalTime duracion=(LocalTime) modelo.getValueAt(fila, 3);
-    Ruta ruta=new Ruta(idRuta,origen,destino,duracion,true);
+    Colectivo cole=ColeGuardado.getCole();
+    Ruta ruta=new Ruta(idRuta,origen,destino,duracion,cole,true);
     RutaSeleccionada.setRutaSeleccionada(ruta);
     
 for(Horario h:hd.horarioDisponiblesPorRuta(ruta)){

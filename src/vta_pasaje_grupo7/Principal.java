@@ -12,9 +12,9 @@ import vta_pasaje_grupo7.Entidades.*;
 public class Principal {
  
     public static void main(String[] args) {
-       Ruta ruta=new Ruta(1,"San Luis","Villa Mercedes", LocalTime.of(1, 30),true);
-       Ruta ruta2=new Ruta(2,"San Luis","Buenos Aires", LocalTime.of(16, 30),true);
-        Ruta ruta3=new Ruta(3,"San Luis","Villa de la quebrada", LocalTime.of(0, 30),true);
+//       Ruta ruta=new Ruta(1,"San Luis","Villa Mercedes", LocalTime.of(1, 30),true);
+//       Ruta ruta2=new Ruta(2,"San Luis","Buenos Aires", LocalTime.of(16, 30),true);
+//        Ruta ruta3=new Ruta(3,"San Luis","Villa de la quebrada", LocalTime.of(0, 30),true);
        RutaData rd=new RutaData();
      
        //Guardar ruta
@@ -43,8 +43,8 @@ String destino="buenos aires";
 //}
 
 //Cargar horario
-Horario horario=new Horario(ruta3,LocalTime.of(10,30),LocalTime.of(11,30),true);
-HorarioData hd=new HorarioData();
+//Horario horario=new Horario(ruta3,LocalTime.of(10,30),LocalTime.of(11,30),true);
+//HorarioData hd=new HorarioData();
 //hd.agregarHorario(horario);
 
 //listar horarios por ruta
@@ -98,13 +98,13 @@ ColectivoData cd=new ColectivoData();
 //}
 
 
-Pasaje pasaje=new Pasaje(pasajero,colectivo,ruta,LocalDate.of(2024,10,1),LocalTime.of(14,00),25,20.500);
-Pasaje pasaje2=new Pasaje(pasajero2,colectivo2,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
-Pasaje pasaje3=new Pasaje(pasajero2,colectivo3,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
-Pasaje pasaje4=new Pasaje(pasajero,colectivo3,ruta3,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
-Pasaje pasaje5=new Pasaje(pasajero2,colectivo3,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
-Pasaje pasaje6=new Pasaje(pasajero,colectivo3,ruta,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
-PasajeData pasajeData=new PasajeData();
+//Pasaje pasaje=new Pasaje(pasajero,colectivo,ruta,LocalDate.of(2024,10,1),LocalTime.of(14,00),25,20.500);
+//Pasaje pasaje2=new Pasaje(pasajero2,colectivo2,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+//Pasaje pasaje3=new Pasaje(pasajero2,colectivo3,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+//Pasaje pasaje4=new Pasaje(pasajero,colectivo3,ruta3,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+//Pasaje pasaje5=new Pasaje(pasajero2,colectivo3,ruta2,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+//Pasaje pasaje6=new Pasaje(pasajero,colectivo3,ruta,LocalDate.of(2024,7,12),LocalTime.of(8,00),12,11111);
+//PasajeData pasajeData=new PasajeData();
         
    //pasajeData.venderPasaje(pasaje5);
    
